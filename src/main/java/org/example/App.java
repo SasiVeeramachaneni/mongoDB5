@@ -10,7 +10,7 @@ import org.bson.Document;
 public class App {
     public static void main(String[] args) {
 
-        Connection connectToDB = new Connection();
+        Connection connectToDB = new Connection("sample_analytics");
         MongoCollection<Document> coll = connectToDB.database.getCollection("accounts");
         MongoCursor singleCursor = coll.find().iterator();
         while(singleCursor.hasNext()){

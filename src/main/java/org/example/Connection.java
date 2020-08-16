@@ -9,7 +9,7 @@ import com.mongodb.client.MongoDatabase;
 public class Connection {
     MongoDatabase database;
 
-    Connection(){
+    Connection(String dbName){
         ConnectionString connString = new ConnectionString(
                 "mongodb+srv://dbUser:dbPassword@cluster0-1bxg9.mongodb.net/");
 
@@ -18,7 +18,7 @@ public class Connection {
                 .retryWrites(true)
                 .build();
         MongoClient mongoClient = MongoClients.create(settings);
-        this.database = mongoClient.getDatabase("sample_analytics");
+        this.database = mongoClient.getDatabase(dbName);
     }
 
 

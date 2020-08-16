@@ -1,7 +1,7 @@
 package org.example;
 
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
+import org.bson.conversions.Bson;
+import org.example.dbConnections.processEvents;
 import org.bson.Document;
 
 /**
@@ -10,11 +10,15 @@ import org.bson.Document;
 public class App {
     public static void main(String[] args) {
 
-        Connection connectToDB = new Connection("sample_analytics");
-        MongoCollection<Document> coll = connectToDB.database.getCollection("accounts");
-        MongoCursor singleCursor = coll.find().iterator();
-        while(singleCursor.hasNext()){
-            System.out.println(singleCursor.next());
-        }
+        //to Get the list of Events
+        processEvents myEvents = new processEvents();
+        Bson bson = myEvents.getEvent(198100);
+        System.out.println(bson);
+        Document document = (Document) bson;
+        System.out.println((int) document.get("account_id"));
+
+
+        //To delete the event from DB
+        myEvents.deleteEvent(557378);
     }
 }

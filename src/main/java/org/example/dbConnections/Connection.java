@@ -1,4 +1,4 @@
-package org.example;
+package org.example.dbConnections;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
@@ -9,7 +9,7 @@ import com.mongodb.client.MongoDatabase;
 public class Connection {
     MongoDatabase database;
 
-    Connection(String dbName){
+    public Connection(String dbName){
         ConnectionString connString = new ConnectionString(
                 "mongodb+srv://dbUser:dbPassword@cluster0-1bxg9.mongodb.net/");
 
